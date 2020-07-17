@@ -3,8 +3,8 @@ This is simple guide for deploying  and managing this public Flask applications 
 
 ## Step 1. Create a new folder for your project:
 ```
-Git Clone [project]
-cd [project]
+$ Git Clone [project]
+$ cd [project]
 ```
 
 ## Step 2. Initialize the folder with git and a virtualenv
