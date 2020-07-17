@@ -2,6 +2,7 @@
 ## =-----------=
 # 2. Herokuapp Guide
 This is simple guide for deploying  and managing this public Flask applications heroku platform.
+This is our [example project](https://student-poster-template.herokuapp.com/)
 
 #### Step 1. Create a new folder for your project:
 ```
