@@ -1,6 +1,6 @@
 # iPoster: Interactive Poster Guide
 The following guide for deploying  and managing a public Flask iPoster application on the heroku platform.
-This is our [example project](https://student-poster-template.herokuapp.com/)
+This is our [example project](https://revised-template-app.herokuapp.com/)
 
 ### Step 1. Fork this Github Repo:
 Fork this repo into your Github account using the fork button at the
