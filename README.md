@@ -10,9 +10,11 @@ cd [project]
 ## Step 2. Initialize the folder with git and a virtualenv
 ```
 $ git init        # initializes an empty git repo
-$ virtualenv venv # creates a virtualenv called "venv"
-$ source venv/bin/activate # uses the virtualenv
+$ virtualenv venv      # creates a virtualenv called "venv"
+$ source venv/bin/activate       # uses the virtualenv
 ```
-
-
-
+### Step 3. Install Needed package 
+```
+$ pip install dash
+$ pip install plotly
+```
