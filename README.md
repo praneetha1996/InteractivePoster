@@ -27,3 +27,9 @@ $ pip install gunicorn
 ```
 
 ### Step 5. Initialize the folder with a sample app (app.py), a .gitignore file, requirements.txt, and a Procfile for deployment
+>.gitignore
+
+venv
+*.pyc
+.DS_Store
+.env
