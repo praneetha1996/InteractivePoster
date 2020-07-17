@@ -26,8 +26,10 @@ $ pip install dash-bootstrap-components
 ```
 $ pip install gunicorn
 ```
+#### Step 5. Create herokuapp account
+Setup account on Heroku and download Heroku CLI utility
 
-#### Step 5. Initialize the folder with a sample app (app.py), a .gitignore file, requirements.txt, and a Procfile for deployment
+#### Step 6. Initialize the folder with a sample app (app.py), a .gitignore file, requirements.txt, and a Procfile for deployment
 1) app.py
 
 2) .gitignore
