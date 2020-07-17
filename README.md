@@ -58,6 +58,7 @@ $ heroku ps:scale web=1  # run the app with a 1 heroku "dyno"
 ```
 
 * Deploy from github remote:
-you can open herokuapp dashboard and connect your github repo to your herokuapp
-The instruction here :[Instruction](https://devcenter.heroku.com/articles/github-integration)
+you can open herokuapp dashboard and connect your github repo to your herokuapp \n
+The instruction here :
+[Instruction](https://devcenter.heroku.com/articles/github-integration)
 
