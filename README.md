@@ -30,12 +30,25 @@ $ pip install gunicorn
 1) app.py
 
 2) .gitignore
->venv
->*.pyc
->.DS_Store
->.env
+>venv  
+>*.pyc       
+>.DS_Store  
+>.env 
 
 3) requirements.txt
 
 4) Procfile
+```
+$ web: gunicorn app:server
+```
+(Note that app refers to the filename app.py. server refers to the variable server inside that file).
+
+### Step 6. Initialize the folder with a sample app (app.py), a .gitignore file, requirements.txt, and a Procfile for deployment
+```
+$ heroku create sample-dash-app # change sample-dash-app to your website name
+$ git add . # add all files to git
+$ git commit -m 'Initial'
+$ git push heroku master # deploy code to heroku
+$ heroku ps:scale web=1  # run the app with a 1 heroku "dyno"
+```
 
