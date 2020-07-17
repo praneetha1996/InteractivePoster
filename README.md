@@ -26,10 +26,8 @@ $ pip install dash-bootstrap-components
 ```
 $ pip install gunicorn
 ```
-#### Step 5. Create herokuapp account
-Setup account on Heroku and download Heroku CLI utility
 
-#### Step 6. Initialize the folder with a sample app (app.py), a .gitignore file, requirements.txt, and a Procfile for deployment
+#### Step 5. Initialize the folder with a sample app (app.py), a .gitignore file, requirements.txt, and a Procfile for deployment
 1) app.py
 
 2) .gitignore
@@ -46,7 +44,11 @@ $ web: gunicorn app:server
 ```
 (Note that app refers to the filename app.py. server refers to the variable server inside that file).
 
-#### Step 6. Initialize the folder with a sample app (app.py), a .gitignore file, requirements.txt, and a Procfile for deployment
+#### Step 6. Create herokuapp account
+Setup account on Heroku and download Heroku CLI utility
+
+#### Step 7. Initialize the folder with a sample app (app.py), a .gitignore file, requirements.txt, and a Procfile for deployment
+* Deploy from local:
 ```
 $ heroku create sample-dash-app # change sample-dash-app to your website name
 $ git add . # add all files to git
@@ -54,5 +56,8 @@ $ git commit -m 'Initial'
 $ git push heroku master # deploy code to heroku
 $ heroku ps:scale web=1  # run the app with a 1 heroku "dyno"
 ```
-You should be able to view your app at https://sample-dash-app.herokuapp.com 
+
+* Deploy from github remote:
+you can open herokuapp dashboard and connect your github repo to your herokuapp
+The instruction here :[Instruction](https://devcenter.heroku.com/articles/github-integration)
 
