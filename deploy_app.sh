@@ -1,4 +1,4 @@
-POSTERTITLE=sample-iposter
+POSTERTITLE=student-poster-template
 
 # Create Heroku App
 heroku create $POSTERTITLE
