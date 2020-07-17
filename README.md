@@ -1,6 +1,4 @@
-# 1. Iposter Guide
-## =-----------=
-# 2. Herokuapp Guide
+# 1. Herokuapp Guide
 This is simple guide for deploying  and managing this public Flask applications heroku platform.
 This is our [example project](https://student-poster-template.herokuapp.com/)
 
@@ -16,13 +14,13 @@ $ git init        # initializes an empty git repo
 $ virtualenv venv      # creates a virtualenv called "venv"
 $ source venv/bin/activate       # uses the virtualenv
 ```
-#### Step 3. Install Needed package 
+#### Step 3. Install Needed package
 ```
 $ pip install dash
 $ pip install plotly
 $ pip install dash-bootstrap-components
 ```
-#### Step 4. Deploying app 
+#### Step 4. Deploying app
 ```
 $ pip install gunicorn
 ```
@@ -36,7 +34,7 @@ Setup account on Heroku and download Heroku CLI utility
 >venv  
 >*.pyc       
 >.DS_Store  
->.env 
+>.env
 
 3) requirements.txt
 
@@ -54,5 +52,4 @@ $ git commit -m 'Initial'
 $ git push heroku master # deploy code to heroku
 $ heroku ps:scale web=1  # run the app with a 1 heroku "dyno"
 ```
-You should be able to view your app at https://sample-dash-app.herokuapp.com 
-
+You should be able to view your app at https://sample-dash-app.herokuapp.com

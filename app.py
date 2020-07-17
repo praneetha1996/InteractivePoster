@@ -1,60 +1,96 @@
-# from iposter.server import run_poster
-import iposter.components as ip
-import dash_html_components as html
-import flask
-import dash_bootstrap_components as dbc
-import os
-from random import randint
-import dash
+# Imports
+import os, flask, dash
 from pathlib import Path
+from random import randint
+import dash_bootstrap_components as dbc
+from plotly.express import bar
+import pandas as pd
 
+# Import iPoster Object Class
+from iposter.iposter import iPoster
 
+# Run Local Flag
+RUN_LOCAL=False
 
-
-server = flask.Flask(__name__)
-server.secret_key = os.environ.get('secret_key', str(randint(0, 1000000)))
-app = dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP],server=server,assets_folder= Path(__file__).parent.absolute(),
-                    assets_url_path='/',suppress_callback_exceptions=True)
-
+# ******************Define Your Interactive Poster Here***************
+# The following shows a sample interactive poster.
+# Images for sections must be saved under the assets/ folder.
+# You can import code from your own modules and construct the final dash
+# interactive poster here.
 def create_poster():
-    # Header Info
-    poster_title = html.H1("Research poster title; state the main topic of your study",
-                            style={"text-align":"center","font-size":"89px"})
-    poster_authors = html.H2("Intern Name1, Researcher Name2, Researcher Name2, Mentor (Primary Investigator) Name2",
-                             style={"text-align":"center","font-size":"59px"})
-    poster_institutions = html.H3("1University Name, 2Lawrence Berkeley National Laboratory",
-                                  style={"text-align":"center","font-size":"48px"})
 
-    #
-    abstract = ip.PosterSection(
-        title="Abstract",
-        children=[html.P(
-            "This is some card text",
-            style={"font-size":"34px","height":"7in"}),])
+    # Instanitate an iPoster
+    my_poster = iPoster(title="Research poster title; state the main topic of your study",
+                        authors_dict={"Inter Name" : "University Name",
+                                      "Researcher Name" : "University Name",
+                                      "Mentor (Primary Investigator) Name" : "Lawrence Berkeley National Laboratory"})
 
-    column_0 = ip.PosterColumn(sections=[
-        abstract,
-        abstract,
-        abstract])
+    # Add sections to first column then add new column
+    my_poster.add_section(title="Abstract",
+        text="The first cell of your Research Poster must include your research abstract in its entirety. \
+        The abstract should fully summarize the contents of your Research Paper in one paragraph. For \
+        detailed instructions about how to write the abstract, read Chapter 14 of Scientific Writing\
+        and Communication. ")
+    my_poster.add_section(title="Background Info",
+        text="Begin with the broad background information and significance of\
+             your research topic; answer the question “Why should I care?’ \
+             This provides the audience with context about how your research \
+             relates to the world around them.")
+    my_poster.add_section(title="Colors", color="#5062dd",
+        text="Use color to increase the readability of your Research Poster, highlighting important \
+        points. Avoid distracting colors. Set section header color with the color parameter.")
+    my_poster.next_column()
 
-    #
-    layout = ip.Poster(
-        title=poster_title,
-        authors=poster_authors,
-        institutions=poster_institutions,
-        columns=[
-        column_0,
-        column_0,
-        column_0])
+    # Add sections to second column then add new column
+    my_poster.add_section(title="Fonts",
+        text="Use the third person. Use concise, not conversational language.\
+        .Use bulletpoints whenever possible. Use more images/graphics and less \
+        text. Title, up to 90 pt, bold in Arial, Georgia, Palatino or Tahoma font. Headers, \
+        50 - 72 pt, bold in Arial, Georgia, Palatino or Tahoma font. Internal text, 24 - 44 \
+        pt in Georgia or Palatino font. Spell out acronyms the first time they are ")
+    my_poster.add_section(title="Images",
+        text="Save your image in the assets directory and set img to the filename.",
+        img={"filename":"test.png", "height":"6in", "width":"8in"},
+        fig_caption="Text for figure caption.")
+    my_poster.add_section(title="Other", text="This is some card text.")
+    my_poster.next_column()
 
-    return layout
+    # Add sections to third column then add new column
+    df = pd.DataFrame([[i,i] for i in range(100)], columns=["x","y"])
+    my_plot = bar(df, "x", "y")
+    my_poster.add_section(title="Plots",
+        text="You can add interactive plots through plotly.",
+        plot=my_plot)
+    my_poster.add_section(title="Other", text="This is some card text.")
+    my_poster.add_section(title="Other", text="This is some card text.")
+    my_poster.add_section(title="Other", text="This is some card text.")
+    my_poster.next_column()
 
+    return my_poster.compile()
 
-poster = create_poster()
-app.layout = poster
+# **********************************************************************
 
+# Dash App Configuration
+if RUN_LOCAL:
+    app = dash.Dash(__name__,
+                    assets_folder= str(Path(__file__).parent.absolute())+"/assets",
+                    assets_url_path='/',
+                    external_stylesheets=[dbc.themes.BOOTSTRAP],
+                    suppress_callback_exceptions=True)
+else:
+    server = flask.Flask(__name__)
+    server.secret_key = os.environ.get('secret_key', str(randint(0, 1000000)))
+    app = dash.Dash(__name__,
+                    server=server,
+                    assets_folder= str(Path(__file__).parent.absolute())+"/assets",
+                    assets_url_path='/',
+                    external_stylesheets=[dbc.themes.BOOTSTRAP],
+                    suppress_callback_exceptions=True)
+app.layout = create_poster()
 
+# Main Function
 if __name__ == "__main__":
-   # server.secret_key = os.environ.get('secret_key', str(randint(0, 1000000)))
-    app.server.run(debug=True,threaded=True)
-
+    if RUN_LOCAL:
+        app.run_server(debug=False, host="0.0.0.0", port="8888")
+    else:
+        app.server.run(debug=True, threaded=True)
