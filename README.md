@@ -19,4 +19,11 @@ $ source venv/bin/activate       # uses the virtualenv
 ```
 $ pip install dash
 $ pip install plotly
+$ pip install dash-bootstrap-components
 ```
+### Step 4. Deploying app 
+```
+$ pip install gunicorn
+```
+
+### Step 5. Initialize the folder with a sample app (app.py), a .gitignore file, requirements.txt, and a Procfile for deployment
