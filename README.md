@@ -112,7 +112,13 @@ my_poster.add_section(title="Plots",
                       plot={"fig": my_plot, "caption":"interactive plot figure caption"})
 ```
 
-### Step 3.e. Add a new Column:
+### Step 3.e. Section with Custom Dash Layouts:
+If you find the current options limiting your creativity, you can pass
+in your own Dash layout through the `children` parameter in `.add_section`.
+This appends your layout to the rest of the elements you've decided to include.
+
+
+### Step 3.f. Add a new Column:
 Once you've add all the sections to the initial column,
 move on to the next column by calling `next_column`. There's no limit on the
 number of columns, but columns will fit relative to the space on the poster.
@@ -121,7 +127,7 @@ number of columns, but columns will fit relative to the space on the poster.
 my_poster.next_column()
 ```
 
-### Step 3.f. Return the compiled iPoster:
+### Step 3.g. Return the compiled iPoster:
 At the end of the `create_poster` function, return the compiled version
 of the poster. Calling `.compile` will return the final poster's Dash layout.
 
