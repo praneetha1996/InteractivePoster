@@ -44,7 +44,7 @@ prevent overly complex nested layouts which is standard in Dash.
 `iPoster` and `colors` is already imported in `app.py`. Set all required
 fields including poster title, authors in desired order, and logo.
 
-The logo of should be set to an image saved under `assets/`, and for the
+The logo of your home institution should be set to an image saved under `assets/`, and for the
 time being, is best presented for logos with a 1:1 height to width ratios.
 
 ```python
