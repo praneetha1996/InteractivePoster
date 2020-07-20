@@ -55,14 +55,13 @@ terminal output.
 $ python3 app.py
 ```
 
-
 ## Step 4. Deploy your iPoster on Heroku:
 
 ### Step 4.a. Create a free Heroku account:
 [Account Signup](https://signup.heroku.com)
 
 ### Step 4.b. Create a new app:
-After you log in to your Heroku app, click create a new app.
+After you log in to your Heroku app, click `Create a New App`.
 Your application name will be the url domain.
 
 ### Step 4.c. Update the poster QRCode with the new app name:
@@ -83,9 +82,18 @@ source generate_qrcode.sh
 ```
 
 ### Step 4.d. Change `RUN_LOCAL` to `False`:
-If `RUN_LOCAL`is still set to `True`, change it to `False` before moving
+If `RUN_LOCAL` in `app.py` is still set to `True`, change it to `False` before moving
 on to the next steps. You will get an error when deploying otherwise.
 
+## Step 4.e. Export `virtaulenv`:
+If you installed any other python packages for your poster,
+run the following command to update your requirements file. This
+assumes your virtaulenv is activated.
+
+```bash
+pip freeze > requirements.txt
+
+```
 ### Step 4.e. Push the all your changes to Github:
 Push all your changes to Github using the following commands.
 

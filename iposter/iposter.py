@@ -72,11 +72,13 @@ class iPoster:
             authors += [a]
             authors += [html.Sup(index_dict[self.authors[a]])]
             authors += [", "]
+        authors = authors[:-1]
         insts = []
         for s in index_dict:
             insts += [html.Sup(index_dict[s])]
             insts += [s]
             insts += [", "]
+        insts = insts[:-1]
         title = html.H1(self.poster_title, style={"text-align":"center","font-size":"89px"})
         authors = html.H2(authors,style={"text-align":"center","font-size":"59px"})
         institutions = html.H3(insts, style={"text-align":"center","font-size":"48px"})

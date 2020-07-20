@@ -3,6 +3,8 @@ import os, flask, dash
 from pathlib import Path
 from random import randint
 import dash_bootstrap_components as dbc
+
+# Plots
 from plotly.express import bar
 import pandas as pd
 
