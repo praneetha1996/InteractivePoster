@@ -85,7 +85,7 @@ source generate_qrcode.sh
 If `RUN_LOCAL` in `app.py` is still set to `True`, change it to `False` before moving
 on to the next steps. You will get an error when deploying otherwise.
 
-## Step 4.e. Export `virtaulenv`:
+### Step 4.e. Export `virtaulenv`:
 If you installed any other python packages for your poster,
 run the following command to update your requirements file. This
 assumes your virtaulenv is activated.
@@ -94,7 +94,7 @@ assumes your virtaulenv is activated.
 pip freeze > requirements.txt
 
 ```
-### Step 4.e. Push the all your changes to Github:
+### Step 4.f. Push the all your changes to Github:
 Push all your changes to Github using the following commands.
 
 ```bash
@@ -103,7 +103,7 @@ git commit -m "Latest"
 git push
 ```
 
-### Step 4.f. Deploy your iPoster app:
+### Step 4.g. Deploy your iPoster app:
 After your changes have been pushed, go back to Heroku and
 select the `Deploy` tab and link your Github account under
 `Connect to Github`. Once you've linked your account, you can search for your repo
