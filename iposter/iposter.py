@@ -25,11 +25,12 @@ def PosterColumn(sections):
     return layout
 
 #--
-def Header(title, authors, institutions):
+def Header(title, authors, institutions, logo, banner_color):
     layout = dbc.Card(
     dbc.Row(
-    [dbc.Col([dbc.Row(html.Img(src="logo1.png", style={'height':'1.75in', "width":"5in","padding-left":"100px"})),
-              dbc.Row(html.Img(src="logo2.png", style={'height':'1.75in', "width":"5in", "padding-left":"100px"}))],width=1.5),
+    [dbc.Col([dbc.Row(html.Img(src=logo, style={'height':'3.5in', "width":"3.5in","padding-left":"100px"}))],width=1.5),
+     dbc.Col([dbc.Row(html.Img(src="logo1.png", style={'height':'1.75in', "width":"5in","padding-left":"50px"})),
+              dbc.Row(html.Img(src="logo2.png", style={'height':'1.75in', "width":"5in", "padding-left":"50px"}))],width=1.5),
      dbc.Col([
         dbc.Row(dbc.Container(title,fluid=True)),
         dbc.Row(dbc.Container(authors,fluid=True)),
@@ -37,14 +38,15 @@ def Header(title, authors, institutions):
         ],style={"padding-top":"25px"}),
      dbc.Col(html.Img(src="qrcode.png", style={'height':'4in', "width":"4in"}),style={"display":"flex","justify-content":"flex-end","padding-right":"80px"},width=1.5)],
     style={'height':'4in', "width":"42in"},justify="center"),
+    style={"background": banner_color},
     body=True)
     return layout
 
 #-
-def Poster(title, authors, institutions, columns, bg_color):
+def Poster(title, authors, institutions, logo, columns, bg_color, banner_color):
     layout = html.Div(
     dbc.Col([
-        dbc.Row(Header(title, authors, institutions), style={"padding":"15px"}),
+        dbc.Row(Header(title, authors, institutions, logo, banner_color), style={"padding":"15px"}),
         dbc.DropdownMenuItem(divider=True),
         dbc.Row(columns)], style={"height": "32in"}),
     style={"background": bg_color, "height": "36in", "width": "42in"})
@@ -55,17 +57,20 @@ def Poster(title, authors, institutions, columns, bg_color):
 class iPoster:
 
     #--
-    def __init__(self, title, authors_dict, bg_color="#e6eeff"):
+    def __init__(self, title, authors_dict, logo, banner_color="#0033cc", text_color="white"):
         self.poster_title = title
         self.authors = authors_dict
-        self.bg_color = bg_color
+        self.logo= logo
+        self.bg_color = "#e6eeff"
+        self.banner_color = banner_color
+        self.text_color = text_color
         self.sects = []
         self.cols = []
         self.figure_counter = 0
 
     #--
     def _header_components(self):
-        index_dict = dict([(x[1], x[0]+1) for x in enumerate(set(self.authors.values()))])
+        index_dict = dict([(x[1], x[0]+1) for x in enumerate(set(reversed(list(self.authors.values()))))])
         print(index_dict)
         authors = []
         for a in self.authors:
@@ -79,22 +84,26 @@ class iPoster:
             insts += [s]
             insts += [", "]
         insts = insts[:-1]
-        title = html.H1(self.poster_title, style={"text-align":"center","font-size":"89px"})
-        authors = html.H2(authors,style={"text-align":"center","font-size":"59px"})
-        institutions = html.H3(insts, style={"text-align":"center","font-size":"48px"})
+        title = html.H1(self.poster_title, style={"text-align":"center","font-size":"89px","color":self.text_color})
+        authors = html.H2(authors,style={"text-align":"center","font-size":"59px","color":self.text_color})
+        institutions = html.H3(insts, style={"text-align":"center","font-size":"48px","color":self.text_color})
         return title, authors, institutions
 
     #--
-    def add_section(self, title, text=None, img=None, plot=None, fig_caption=None, color="#0033cc", height=None, children=[]):
+    def add_section(self, title, text=None, img=None, plot=None, color="#0033cc", height=None, children=[]):
         childs = []
         if text: childs.append(html.P(text, style={"font-size":"34px"}))
         if img:
             childs.append(html.Img(src=img["filename"], style={"height":img["height"], "width":img["width"]}))
             self.figure_counter += 1
+            childs.append(html.P("Figure {}. ".format(self.figure_counter), style={"font-size":"28px", "font-weight":"bold"}))
+            childs.append(html.P(img["caption"], style={"font-size":"28px"}))
         if plot:
-            childs.append(dcc.Graph(figure=plot))
+            childs.append(dcc.Graph(figure=plot["fig"]))
             self.figure_counter += 1
-        if fig_caption: childs.append(html.P("Figure {}. ".format(self.figure_counter)+fig_caption, style={"font-size":"28px"}))
+            childs.append(html.P("Figure {}. ".format(self.figure_counter), style={"font-size":"28px", "font-weight":"bold"}))
+            childs.append(html.P(plot["caption"], style={"font-size":"28px"}))
+
         childs += children
         self.sects.append(PosterSection(title, color, childs, height=height))
 
@@ -107,4 +116,4 @@ class iPoster:
     #--
     def compile(self):
         title, authors, institutions = self._header_components()
-        return Poster(title, authors, institutions, self.cols, self.bg_color)
+        return Poster(title, authors, institutions, self.logo, self.cols, self.bg_color, self.banner_color)

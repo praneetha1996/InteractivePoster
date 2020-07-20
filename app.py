@@ -10,6 +10,7 @@ import pandas as pd
 
 # Import iPoster Object Class
 from iposter.iposter import iPoster
+import iposter.colors as colors
 
 #*** Run Local Flag ***
 RUN_LOCAL=False
@@ -22,10 +23,13 @@ RUN_LOCAL=False
 def create_poster():
 
     # Instanitate an iPoster
-    my_poster = iPoster(title="Research poster title; state the main topic of your study",
-                        authors_dict={"Inter Name" : "University Name",
-                                      "Researcher Name" : "University Name",
-                                      "Mentor (Primary Investigator) Name" : "Lawrence Berkeley National Laboratory"})
+    my_poster = iPoster(title="Research poster title; state the main topic of your study", # Title of your poster
+                        authors_dict={"Inter Name" : "Hood College", # Authors in {student, mentors, PI} order
+                                      "Researcher Name" : "Hood College",
+                                      "Mentor (Primary Investigator) Name" : "Lawrence Berkeley National Laboratory"},
+                        logo = "hood.png", # Home institution logo
+                        banner_color=colors.DOE_GREEN, # Color of banner header; colors has preset colors
+                        text_color=colors.WHITE)
 
     # Add sections to first column then add new column
     my_poster.add_section(title="Abstract",
@@ -38,7 +42,7 @@ def create_poster():
              your research topic; answer the question “Why should I care?’ \
              This provides the audience with context about how your research \
              relates to the world around them.")
-    my_poster.add_section(title="Colors", color="#5062dd",
+    my_poster.add_section(title="Colors", color=colors.LBNL_BLUE,
         text="Use color to increase the readability of your Research Poster, highlighting important \
         points. Avoid distracting colors. Set section header color with the color parameter.")
     my_poster.next_column()
@@ -52,10 +56,7 @@ def create_poster():
         pt in Georgia or Palatino font. Spell out acronyms the first time they are ")
     my_poster.add_section(title="Images",
         text="Save your image in the assets directory and set img to the filename.",
-
-        img={"filename":"test.png", "height":"6in", "width":"8in"},
-
-        fig_caption="Text for figure caption.")
+        img={"filename":"test.png", "height":"6in", "width":"8in", "caption":"Text for figure caption."})
     my_poster.add_section(title="Other", text="This is some card text.")
     my_poster.next_column()
 
@@ -64,8 +65,7 @@ def create_poster():
     my_plot = bar(df, "x", "y")
     my_poster.add_section(title="Plots",
         text="You can add interactive plots through plotly.",
-
-        plot=my_plot)
+        plot={"fig": my_plot, "caption": "interactive plot figure caption"})
     my_poster.add_section(title="Other", text="This is some card text.")
     my_poster.add_section(title="Other", text="This is some card text.")
     my_poster.add_section(title="Other", text="This is some card text.")

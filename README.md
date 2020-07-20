@@ -5,6 +5,8 @@ The web application for the poster is implemented using
 Flask, Dash, and Plotly.
 
 This is this repo's [example iPoster](https://iposter-template.herokuapp.com/).
+The poster layout is formatted to meet WorkForce Development requirements,
+and can be exported as a PDF from your web browser.
 
 ## Step 1. Fork this Github Repo:
 Fork this repo into your Github account using the fork button at the
@@ -34,7 +36,98 @@ source iposter-env/bin/activate
 The poster code can be found in `app.py`. There, you will find a function
 called `create_poster` which defines the current template used in this guide.
 
-Here is a commented version of that function:
+The following gives details on how to create a new poster, make sections, and add figures.
+The workflow was simplified to be define the poster in a linear way to
+prevent overly complex nested layouts which is standard in Dash.
+
+### Step 3.a. Create a new iPoster instance:
+`iPoster` and `colors` is already imported in `app.py`. Set all required
+fields including poster title, authors in desired order, and logo.
+
+The logo of should be set to an image saved under `assets/`, and for the
+time being, is best presented for logos with a 1:1 height to width ratios.
+
+```python
+# Create an iPoster
+my_poster = iPoster(title="Research poster title; state the main topic of your study", # Title of your poster
+                    authors_dict={"Inter Name" : "University Name", # Authors in {student, mentors, PI} order
+                                  "Researcher Name" : "University Name",
+                                  "Mentor (Primary Investigator) Name" : "Lawrence Berkeley National Laboratory"},
+                    logo = "hood.png", # Home institution logo
+                    banner_color=colors.DOE_GREEN, # Color of banner header; colors has preset colors
+                    text_color=colors.WHITE)
+
+```
+
+### Step 3.b. Add a new Section:
+When iPoster is instantiated, a new poster column is also created. We can
+add sections to the column using the `.add_section` method. Sections will
+fill the column in a fluid fashion unless an explicit `height` parameter
+is provided. `height` can be set in inches.
+
+```python
+my_poster.add_section(title="Abstract", # Section Title
+                      text="The first cell of your Research Poster must include your research abstract in its entirety. \
+                      The abstract should fully summarize the contents of your Research Paper in one paragraph. For \
+                      detailed instructions about how to write the abstract, read Chapter 14 of Scientific Writing\
+                      and Communication.", # Text body of the section
+                      color=colors.HOOD_BLUE, # Section header color
+                      height="5in") # Static height is applicable; Use this for bottom sections to fill in empty space.
+```
+
+### Step 3.c. Section with Image:
+You can add a static image to a section by filling out the
+`img` parameter in `add_section`. `img` must be set to a dictionary with the
+following 4 keys: `"filename"`, `"height"`, `"width"`, `"caption"`.
+
+Place your image files under `assets/` in the project directory. This will
+make those images visible to the Dash application. After that, `filename`
+can be set to the name of the image file. `caption` should be set to
+give your image a figure caption.
+
+The code manages figure numbering so you don't need to worry about that.
+
+```python
+my_poster.add_section(title="Images",
+                      text="Save your image in the assets directory and set img to the filename.",
+                      img={"filename":"test.png", "height":"6in", "width":"8in", "caption":"Text for figure caption."})
+```
+
+### Step 3.d. Section with Interactive Plot:
+Dash integrates cleanly with plots created in Plotly. You can use this to
+create interesting interactive plots. You can add a plotly graph by
+setting the `plot` argument in `add_section` to a dictionary
+with the following 2 keys: `"fig"` and `"caption"`.
+
+`fig` will be set to your plot, and `caption` to its corresponding figure
+caption.
+
+```python
+from plotly.express import bar
+import pandas as pd
+df = pd.DataFrame([[i,i] for i in range(100)], columns=["x","y"])
+my_plot = bar(df, "x", "y")
+my_poster.add_section(title="Plots",
+                      text="You can add interactive plots through plotly.",
+                      plot={"fig": my_plot, "caption":"interactive plot figure caption"})
+```
+
+### Step 3.e. Add a new Column:
+Once you've add all the sections to the initial column,
+move on to the next column by calling `next_column`. There's no limit on the
+number of columns, but columns will fit relative to the space on the poster.
+
+```python
+my_poster.next_column()
+```
+
+### Step 3.f. Return the compiled iPoster:
+At the end of the `create_poster` function, return the compiled version
+of the poster. Calling `.compile` will return the final poster's Dash layout.
+
+```python
+return my_poster.compile()
+```
 
 ## Step 4. Run your iPoster locally:
 To make sure that your poster looks like you want it before deploying it
