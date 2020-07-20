@@ -9,8 +9,8 @@ import pandas as pd
 # Import iPoster Object Class
 from iposter.iposter import iPoster
 
-# Run Local Flag
-RUN_LOCAL=True
+#*** Run Local Flag ***
+RUN_LOCAL=False
 
 # ******************Define Your Interactive Poster Here***************
 # The following shows a sample interactive poster.

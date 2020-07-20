@@ -1,10 +1,11 @@
 # Make Virtual Environment
-virtualenv venv
-source venv/bin/actviate
+python3 -m venv iposter-env
+source iposter-env/bin/activate
 
 # Install Dependencies
 pip install dash
 pip install plotly
+pip install pandas
 pip install dash-bootstrap-components
 pip install pypng
 pip install pyqrcode
