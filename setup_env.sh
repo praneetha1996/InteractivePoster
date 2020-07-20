@@ -10,3 +10,6 @@ pip install dash-bootstrap-components
 pip install pypng
 pip install pyqrcode
 pip install gunicorn
+
+# Deactivate
+source iposter-env/bin/deactivate

@@ -36,7 +36,7 @@ called `create_poster` which defines the current template used in this guide.
 
 Here is a commented version of that function:
 
-### Step 4. Run the poster locally:
+### Step 4. Run your iPoster locally:
 To make sure that your poster looks like you want it before deploying it
 using Heroku, run the poster application locally. First change the
 `RUN_LOCAL` flag in the `app.py` file to `True`.
@@ -48,7 +48,7 @@ using Heroku, run the poster application locally. First change the
 RUN_LOCAL=True
 ```
 
-After this, you can run dash application. Copy and paste the URL listed on the
+After this, run the dash application. Copy and paste the URL listed on the
 terminal output.
 
 ```bash
@@ -56,19 +56,53 @@ $ python3 app.py
 ```
 
 
-### Step 4. Deploy poster on Heroku:
+### Step 4. Deploy your iPoster on Heroku:
 
 #### Step 4.a. Create a free Heroku account:
 [Account Signup](https://signup.heroku.com)
 
 #### Step 4.b. Create a new app:
 After you log in to your Heroku app, click create a new app.
-Your application name will be the url domain. After that,
+Your application name will be the url domain.
 
+#### Step 4.c. Update the poster QRCode with the new app name:
+Change the `POSTERURL` in `generate_qrcode.sh` to your application name from the
+previous step.
 
-[Account Signup](https://signup.heroku.com)
+```bash
+POSTERURL=iposter-template
 
-* Deploy from github remote:
-you can open herokuapp dashboard and connect your github repo to your herokuapp.
-The instruction here :
-[Instruction](https://devcenter.heroku.com/articles/github-integration)
+# Create QRCode
+python iposter/qrcode.py $POSTERURL
+```
+
+After you change it, run the bash script.
+
+```bash
+source generate_qrcode.sh
+```
+
+#### Step 4.d. Change `RUN_LOCAL` to `False`:
+If `RUN_LOCAL`is still set to `True`, change it to `False` before moving
+on to the next steps. You will get an error when deploying otherwise.
+
+#### Step 4.e. Push the all your changes to Github:
+Push all your changes to Github using the following commands.
+
+```bash
+git add *
+git commit -m "Latest"
+git push
+```
+
+#### Step 4.f. Deploy your iPoster app:
+After your changes have been pushed, go back to Heroku and
+select the Deploy tab and link your Github account under
+Connect to Github. Once you've linked your account, you can search for your repo
+under the same section.
+
+![](heroku_screenshot.png)
+
+Select your repo, scroll down, and run a manual deployment of the application
+by clicking on deploy branch. This may take a few minutes. Once it's done,
+Heroku will give you a link to view your app.
