@@ -10,7 +10,7 @@ import pandas as pd
 from iposter.iposter import iPoster
 
 # Run Local Flag
-RUN_LOCAL=False
+RUN_LOCAL=True
 
 # ******************Define Your Interactive Poster Here***************
 # The following shows a sample interactive poster.
@@ -50,7 +50,9 @@ def create_poster():
         pt in Georgia or Palatino font. Spell out acronyms the first time they are ")
     my_poster.add_section(title="Images",
         text="Save your image in the assets directory and set img to the filename.",
+
         img={"filename":"test.png", "height":"6in", "width":"8in"},
+
         fig_caption="Text for figure caption.")
     my_poster.add_section(title="Other", text="This is some card text.")
     my_poster.next_column()
@@ -60,6 +62,7 @@ def create_poster():
     my_plot = bar(df, "x", "y")
     my_poster.add_section(title="Plots",
         text="You can add interactive plots through plotly.",
+
         plot=my_plot)
     my_poster.add_section(title="Other", text="This is some card text.")
     my_poster.add_section(title="Other", text="This is some card text.")
