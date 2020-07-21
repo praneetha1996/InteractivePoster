@@ -193,7 +193,7 @@ assumes your virtaulenv is activated.
 pip freeze > requirements.txt
 
 ```
-### Step 4.f. Push the all your changes to Github:
+### Step 4.f. Push all your changes to Github:
 Push all your changes to Github using the following commands.
 
 ```bash
