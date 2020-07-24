@@ -1,7 +1,7 @@
 
 # Make Virtual Environment
 virtualenv iposter-env
-source iposter-env/bin/activate
+source iposter-env/Scripts/activate
 
 # Install Dependencies
 pip install dash
