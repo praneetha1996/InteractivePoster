@@ -33,6 +33,9 @@ To load the virtualenv, run the following command.
 
 ```bash
 source iposter-env/bin/activate
+
+# ON WINDOwS
+source iposter-env/Scripts/activate
 ```
 
 ## Step 3. Implement your poster using the available tools:
@@ -155,6 +158,9 @@ terminal output.
 
 ```bash
 $ python3 app.py
+
+# ON WINDOWS
+$ python app.py
 ```
 
 ## Step 4. Deploy your iPoster on Heroku:
