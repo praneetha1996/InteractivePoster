@@ -24,6 +24,9 @@ install the needed python packages.
 
 ```bash
 source setup_env.sh
+
+# ON WINDOWS
+source setup_env_windows.sh
 ```
 
 To load the virtualenv, run the following command.
