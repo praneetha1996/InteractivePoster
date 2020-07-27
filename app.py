@@ -26,10 +26,11 @@ def create_poster():
     my_poster = iPoster(title=" A Deep Learning Model for Predicting Sentiment of Disease of Despair Patients", # Title of your poster
                         authors_dict={"Praneetha Gouni":"University of Cincinnati",
                                       "Victor":"University of Cincinnati", # Authors in {student, mentors, PI} order
-                                      "Rafael Zamora":"Lawrence Berkeley National Laboratory",
-                                      "Xiange Wang":"Lawrence Berkeley National Laboratory",
                                       "Victoria Wangia Anderson":"University of Cincinnati",
-                                      "Silvia Crivelli":"Lawrence Berkeley National Laboratory"},
+                                      "Silvia Crivelli":"Lawrence Berkeley National Laboratory"
+                                      "Xiange Wang":"Lawrence Berkeley National Laboratory",
+                                      "Rafael Zamora":"Lawrence Berkeley National Laboratory",
+},
                                     
                         logo = "uc1.png", # Home institution logo
                         banner_color=colors.DOE_GREEN, # Color of banner header; colors has preset colors
