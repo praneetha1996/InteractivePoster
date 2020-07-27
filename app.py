@@ -27,7 +27,7 @@ def create_poster():
                         authors_dict={"Praneetha Gouni":"University of Cincinnati",
                                       "Victor":"University of Cincinnati", # Authors in {student, mentors, PI} order
                                       "Rafael Zamora":"Lawrence Berkeley National Laboratory",
-                                      "Shirley Wang":"Lawrence Berkeley National Laboratory",
+                                      "Xiange Wang":"Lawrence Berkeley National Laboratory",
                                       "Victoria Wangia-Anderson":"University of Cincinnati",
                                       "Silvia Crivelli":"Lawrence Berkeley National Laboratory"},
                                     
