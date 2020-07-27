@@ -24,12 +24,12 @@ def create_poster():
 
     # Instanitate an iPoster
     my_poster = iPoster(title=" A Deep Learning Model for Predicting Sentiment of Disease of Despair Patients", # Title of your poster
-                        authors_dict={"Praneetha Gouni":"University of Cincinnati",
-                                      "Victor":"University of Cincinnati", # Authors in {student, mentors, PI} order
-                                      "Victoria Wangia Anderson":"University of Cincinnati",
-                                      "Silvia Crivelli":"Lawrence Berkeley National Laboratory"
-                                      "Xiange Wang":"Lawrence Berkeley National Laboratory",
-                                      "Rafael Zamora":"Lawrence Berkeley National Laboratory",
+                        authors_dict={"Praneetha Gouni":["University of Cincinnati","Lawrence Berkeley National Laboratory"],
+                                      "Victor Adewopo":["University of Cincinnati","Lawrence Berkeley National Laboratory"], # Authors in {student, mentors, PI} order
+                                      "Victoria Wangia Anderson":["University of Cincinnati","Lawrence Berkeley National Laboratory"],
+                                      "Silvia Crivelli":["Lawrence Berkeley National Laboratory"],
+                                      
+                                      
 },
                                     
                         logo = "uc1.png", # Home institution logo
@@ -50,7 +50,7 @@ def create_poster():
     my_poster.add_section(title="METHODS",
         text="•	Data Visualization using Tableau; Preprocessing of Clinical Notes data using NLTK library;	Calculate sentiment Polarity scores using Python for the notes of each patient;  Tagged the scores as positives and negatives to create training data;  Built a model that could predict label for the new input;  Compared model against 4 different word scoring methods and found the best fit;  Tested the model on suicide notes.")
     my_poster.add_section(title="Preprocessing of Text Data",
-         img1={"filename":"preprocess.PNG", "height":"4in", "width":"6in", "caption":"This figure explains how unstructered data is preprocessed before the data is fed to a model."})
+        img1={"filename":"preprocess.PNG", "height":"4in", "width":"6in", "caption":"This figure explains how unstructered data is preprocessed before the data is fed to a model."})
     
     my_poster.next_column()
     my_poster.add_section(title="Findings from MIMIC 3 Dataset",
