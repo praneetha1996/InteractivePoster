@@ -58,7 +58,7 @@ def create_poster():
     # my_poster.add_section(title="MODEL",
     #     text="A Multilayer Perceptron (MLP) consists of at least three layers of nodes: an input layer, a hidden layer and an output layer. MLP utilizes a supervised learning technique called backpropagation for training. The model was built with a single hidden layer with 50 neurons and a rectified linear activation function. The output layer is a single neuron with a sigmoid activation function for predicting 0 for negative and 1 for positive reviews. After  preprocessing, training data is prepared by calculating the sentiment polarity scores for notes of each patient and then fed into the model. The network will be trained using the efficient Adam implementation of gradient descent and the binary cross entropy loss function, suited to binary classification problems.")
     my_poster.add_section(title="DEEP LEARNING MODEL",
-        img1={"filename":"MLP.PNG", "height":"5in", "width":"7in", "caption":"MLP with one hidden layer"})
+        img1={"filename":"MLP1.PNG", "height":"5in", "width":"7in", "caption":"MLP with one hidden layer"})
    
     # Add sections to second column then add new column
     # my_poster.next_column()
