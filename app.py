@@ -66,7 +66,7 @@ def create_poster():
       
 
     my_poster.add_section(title="Findings from MIMIC 3 Dataset",
-        pyLDA={"filename":"public.html", "height":"9in", "width":"10in", "caption": "This interactive plot is used for analysing the MIMIC3 dataset and find interesting facts from the data using tableau desktop."})
+        pyLDA={"filename":"public1.html", "height":"9in", "width":"10in", "caption": "This interactive plot is used for analysing the MIMIC3 dataset and find interesting facts from the data using tableau desktop."})
         # img1={"filename":"Story 1.PNG", "height":"6in", "width":"10in", "caption":"Length of Stay of DOD patients in ICU"},
         # img2={"filename":"Story 2.PNG", "height":"6in", "width":"10in", "caption":"Death counts for DOD patients based on marital status"})
        
