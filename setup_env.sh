@@ -1,7 +1,6 @@
 # Make Virtual Environment
-python3 -m venv iposter-env
-source iposter-env/bin/activate
-
+virtualenv iposter-env
+source iposter-env/Scripts/activate
 # Install Dependencies
 pip install dash
 pip install plotly

@@ -1,3 +1,5 @@
 DOE_GREEN="#0f6737"
 LBNL_BLUE="#0033cc"
 WHITE="white"
+BLACK='black'
+RED='#FF0000'

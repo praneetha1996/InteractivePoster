@@ -90,7 +90,7 @@ class iPoster:
         return title, authors, institutions
 
     #--
-    def add_section(self, title, text=None, img=None, plot=None, color="#0033cc", height=None, children=[]):
+    def add_section(self, title, text=None, img=None,img1=None, img2=None, img3=None, plot=None, pyLDA=None,pyLDA2=None,pyLDA3=None, color="#0033cc", height=None, children=[]):
         childs = []
         if text: childs.append(html.P(text, style={"font-size":"34px"}))
         if img:
@@ -98,11 +98,35 @@ class iPoster:
             self.figure_counter += 1
             childs.append(html.P("Figure {}. ".format(self.figure_counter), style={"font-size":"28px", "font-weight":"bold"}))
             childs.append(html.P(img["caption"], style={"font-size":"28px"}))
+        if img1:
+            childs.append(html.Img(src=img1["filename"], style={"height":img1["height"], "width":img1["width"], "margin-left": "auto", "margin-right": "auto", "display": "block"}))
+            self.figure_counter += 1
+            childs.append(html.P("Figure {}. ".format(self.figure_counter) + img1["caption"], style={"font-family": "Georgia","font-size":"24px", "font-weight":"normal", "text-align":"center"}))
+        if img2:
+            childs.append(html.Img(src=img2["filename"], style={"height":img2["height"], "width":img2["width"], "margin-left": "auto", "margin-right": "auto", "display": "block"}))
+            self.figure_counter += 1
+            childs.append(html.P("Figure {}. ".format(self.figure_counter) + img2["caption"], style={"font-family": "Georgia", "font-size":"24px", "font-weight":"normal", "text-align":"center"}))
+        if img3:
+            childs.append(html.Img(src=img3["filename"], style={"height":img3["height"], "width":img3["width"], "margin-left": "auto", "margin-right": "auto", "display": "block"}))
+            self.figure_counter += 1
+            childs.append(html.P("Figure {}. ".format(self.figure_counter) + img3["caption"], style={"font-family": "Georgia", "font-size":"24px", "font-weight":"normal", "text-align":"center"}))
         if plot:
             childs.append(dcc.Graph(figure=plot["fig"]))
             self.figure_counter += 1
             childs.append(html.P("Figure {}. ".format(self.figure_counter), style={"font-size":"28px", "font-weight":"bold"}))
             childs.append(html.P(plot["caption"], style={"font-size":"28px"}))
+        if pyLDA:
+            childs.append(html.Iframe(src=pyLDA["filename"], style={"height":pyLDA["height"], "width":pyLDA["width"]}))
+            self.figure_counter += 1
+            childs.append(html.P("Figure {}. ".format(self.figure_counter) + pyLDA["caption"], style={"font-family": "Georgia", "font-size":"24px", "font-weight":"normal", "text-align":"center"}))
+        if pyLDA2:
+            childs.append(html.Iframe(src=pyLDA2["filename"], style={"height":pyLDA["height"], "width":pyLDA["width"]}))
+            self.figure_counter += 1
+            childs.append(html.P("Figure {}. ".format(self.figure_counter) + pyLDA["caption"], style={"font-family": "Georgia", "font-size":"24px", "font-weight":"normal", "text-align":"center"}))
+        if pyLDA3:
+            childs.append(html.Iframe(src=pyLDA3["filename"], style={"height":pyLDA["height"], "width":pyLDA["width"]}))
+            self.figure_counter += 1
+            childs.append(html.P("Figure {}. ".format(self.figure_counter) + pyLDA["caption"], style={"font-family": "Georgia", "font-size":"24px", "font-weight":"normal", "text-align":"center"}))            
 
         childs += children
         self.sects.append(PosterSection(title, color, childs, height=height))
