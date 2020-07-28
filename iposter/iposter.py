@@ -29,15 +29,15 @@ def Header(title, authors, institutions, logo, banner_color):
     layout = dbc.Card(
     dbc.Row(
     [dbc.Col([dbc.Row(html.Img(src=logo, style={'height':'3.5in', "width":"3.5in","padding-left":"100px"}))],width=1.5),
-     dbc.Col([dbc.Row(html.Img(src="logo1.png", style={'height':'1.75in', "width":"5in","padding-left":"50px"})),
-              dbc.Row(html.Img(src="logo2.png", style={'height':'1.75in', "width":"5in", "padding-left":"50px"}))],width=1.5),
+     dbc.Col([dbc.Row(html.Img(src="logo1.png", style={'height':'1.5in', "width":"5in","padding-left":"50px"})),
+              dbc.Row(html.Img(src="logo2.png", style={'height':'1.5in', "width":"5in", "padding-left":"50px"}))],width=1.5),
      dbc.Col([
         dbc.Row(dbc.Container(title,fluid=True)),
         dbc.Row(dbc.Container(authors,fluid=True)),
         dbc.Row(dbc.Container(institutions,fluid=True)),
         ],style={"padding-top":"25px"}),
-     dbc.Col(html.Img(src="qrcode.png", style={'height':'4in', "width":"4in"}),style={"display":"flex","justify-content":"flex-end","padding-right":"80px"},width=1.5)],
-    style={'height':'4in', "width":"42in"},justify="center"),
+     dbc.Col(html.Img(src="qrcode.png", style={'height':'3in', "width":"4in"}),style={"display":"flex","justify-content":"flex-end","padding-right":"80px"},width=1.5)],
+    style={'height':'3.5in', "width":"42in"},justify="center"),
     style={"background": banner_color},
     body=True)
     return layout
